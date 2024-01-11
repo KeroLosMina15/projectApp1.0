@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "627906800403",
+    "project_id": "zaki-app-4e55e",
+    "storage_bucket": "zaki-app-4e55e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627906800403:android:a1f5e8f20edf90d1af08e6",
+        "android_client_info": {
+          "package_name": "com.example.feeeeeeee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbyH3ukHFhG6Rge7JLne12wmIFvGU-38U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
