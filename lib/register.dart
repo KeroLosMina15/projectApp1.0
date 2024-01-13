@@ -497,7 +497,11 @@ class log extends StatefulWidget{
   login createState() => login();
 }
 class login extends State<log>{
-  String? _e,_p;
+  String? _e,_p,mass='';
+  bool et=true;
+  int eye=0;
+  List ic=[Icon(Icons.remove_red_eye_sharp),
+    Icon(Icons.remove_red_eye_outlined)];
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -508,7 +512,7 @@ class login extends State<log>{
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              height: 400,
+              height: 375,
               child: Stack(
                 children: <Widget>[
                   Positioned(
@@ -545,7 +549,7 @@ class login extends State<log>{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text("Welcome", style: TextStyle(color: Color.fromRGBO(66, 150, 240, 0.9), fontWeight: FontWeight.bold, fontSize: 30),),
-                  SizedBox(height: 30,),
+                  SizedBox(height: 10,),
                   Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -581,38 +585,63 @@ class login extends State<log>{
                             },
                           ),
                         ),
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: TextField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Password",
-                                hintStyle: TextStyle(color: Colors.black45)
-                            ),
-                            onChanged: (value){
-                              setState(() {
-                                this._p=value;
-                              });
-                            },
+                          Container(
+                              padding: EdgeInsets.all(10),
+                             child: TextField(
+                               obscureText: et,
+                               decoration: InputDecoration(
+                                   border: InputBorder.none,
+                                   hintText: "Password",
+                                   hintStyle: TextStyle(color: Colors.black45),
+                                   suffixIcon: IconButton(color: Colors.black,
+                                     onPressed: () {
+                                     setState(() {
+                                     if(et==true){
+                                       et=false;
+                                       eye=1;
+                                     }else{
+                                       et=true;
+                                       eye=0;
+                                     }
+                                     });
+                                   },
+                                     icon:ic[eye],iconSize: 30,)
+                             ),
+                               onChanged: (value){
+                                 setState(() {
+                                   this._p=value;
+                                 });
+                               },
+                             ),
+
                           ),
-                        )
+
                       ],
                     ),
                   ),
-                  SizedBox(height: 20,),
-
+                  SizedBox(height: 5,),
+                  Center(child: Text(mass!,style:
+                  TextStyle(color: Color.fromRGBO(66, 150, 240, 0.9)))),
                   Center(child: TextButton(onPressed: () {
-                  }, child: Text("Forgot Password?", style: TextStyle(color: Color.fromRGBO(66, 150, 240, 0.9)),))),
+                  }, child: Text("Forgot Password?",
+                    style: TextStyle(color: Color.fromRGBO(66, 150, 240, 0.9)),))),
 
-                  SizedBox(height: 30,),
-
-                  MaterialButton(
+                   MaterialButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(builder: (context) => ss()),
-                      );
+                      if(this._e=='admin' && this._p=='admin' ){
+                        setState(() {
+                        mass='';});
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(builder: (context) => ss()),
+                        );
+
+                      }else{
+                        setState(() {
+                          mass='Not Found Email or your Password is wrong';
+                        });
+                      }
+
                     }, color: Color.fromRGBO(66, 150, 240, 1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),
@@ -639,14 +668,15 @@ class login extends State<log>{
 
                     },
                   ),
-                  SizedBox(height: 30,),
-
                   Center(child: TextButton(onPressed: () {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(builder: (context) => rr()),
                     );
-                  }, child: Text("Create Account", style: TextStyle(color: Color.fromRGBO(66, 110, 240, 0.9)),))),
+                  }, child: Text("Create Account",
+                    style: TextStyle(color: Color.fromRGBO(66, 150, 240, 0.9)),))),
+
+
                 ],
               ),
             )
