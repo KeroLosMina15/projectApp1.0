@@ -1,5 +1,6 @@
 import 'dart:developer';
-
+import 'dart:ffi';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:feeeeeeee/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,7 +13,8 @@ String searchText = '';
 bool isSearchClicked = false;
 late int Count;
 List data=['Courses','Quizzes','Sheets'];
-List Cdata=['Java','Italiano','Flutter','Dart','AI'];
+
+
 
 late String titlep;
 
@@ -28,217 +30,7 @@ class _DataState extends State<DataPages> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      drawer: Drawer(
-        backgroundColor: Color.fromRGBO(66, 150, 240, 0.1),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 50),
-            Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color.fromRGBO(66, 150, 240, 0.3),
-                    border:
-                    Border.all(color: Color.fromRGBO(66, 150, 240, 0.9)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color.fromRGBO(66, 150, 240, 0.3),
-                        blurRadius: 20,
-                        offset: Offset(0, 10),
-                      )
-                    ]),
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      child: Container(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  'https://www.woolha.com/media/2020/03/eevee.png'),
-                              backgroundColor:
-                              Color.fromRGBO(66, 150, 240, 0.5),
-                              radius: 35,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            SizedBox(
-                              height: 80,
-                            ),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'User Name',
-                                    style: TextStyle(
-                                        fontSize: 25, color: Colors.black),
-                                  ),
-                                  Text(
-                                    'Score : 15',
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.black),
-                                  ),
-                                ]),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.account_circle_outlined,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Profile',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.chat_bubble,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Chats',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.task,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Assignment',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.paste,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Teachers',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              color: Colors.black,
-                              Icons.settings,
-                              size: 30,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Settings',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-          ],
-        ),
-      ),
+      drawer: Drow(),
       appBar: AppBar(
         backgroundColor: Colors.black12,
         title: isSearchClicked
@@ -298,45 +90,13 @@ class _DataState extends State<DataPages> {
       backgroundColor: Color.fromRGBO(80, 140, 240, .1),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 0),
+              padding: EdgeInsets.symmetric(horizontal: 4),
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+
                   children: [
-               for(int i=0;i<Cdata.length;i++)Column(
-                      children: [
-                        Container(
-                          height: 150,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: Color.fromRGBO(66, 150, 240, 0.3),
-                              border: Border.all(
-                                  color: Color.fromRGBO(66, 150, 240, 0.9)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color.fromRGBO(66, 150, 240, 0.3),
-                                  blurRadius: 20,
-                                  offset: Offset(0, 10),
-                                )
-                              ]),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              TextButton(onPressed: (){},
-                                child: Text('Course ${Cdata[i]}',style: TextStyle(
-                                  fontSize: 30,
-                                  color: Colors.black,)),
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                      ],
-               ),
+               for(int i=0;i<goro.length;i++)PostsC(lI[i],goro[i],percentic[i],cR[i],disco[i])
                   ]
               ),
             )
@@ -381,19 +141,331 @@ class _HomePageState extends State<HomePage> {
           title: Text("hey"),
         ),
         body: Center(
-          child: Text("a7a"),
+          child: Text("hm"),
         )
     );
   }
 }
 
 var i;
-List cour = [
-  'java',
-  'flutter',
-  'c++',
-  'python',
-];
+
+
+List lI=['https://w7.pngwing.com/pngs/595/79/png-transparent-dart-programming-language-flutter-object-oriented-programming-flutter-logo-class-fauna-bird.png'
+,'https://p7.hiclipart.com/preview/405/878/407/java-runtime-environment-computer-icons-java-platform-standard-edition-java.jpg'
+,'https://e7.pngegg.com/pngimages/520/669/png-clipart-c-logo-c-programming-language-computer-icons-computer-programming-programming-miscellaneous-blue-thumbnail.png'];
+List goro=['Flutter','java','c++'];
+List disco=['12 Video ,5 pdf','62 Video ,2 pdf','128 Video ,15 pdf'];
+List percentic=[0.85,0.35,0.55];
+List cR=[Colors.lightGreen,Colors.red,Colors.blue];
+
+Widget PostsC(String l,String p,double per,Color cr,String dis){
+
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+     SizedBox(height: 5,),
+     Container(
+      height: 150,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Color.fromRGBO(66, 150, 240, 0.3),
+          border: Border.all(
+              color: Color.fromRGBO(66, 150, 240, 0.9)),
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromRGBO(66, 150, 240, 0.3),
+              blurRadius: 20,
+              offset: Offset(0, 10),
+            )
+          ]),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(height: 5,),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(width: 5,height: 5,),
+       CircularPercentIndicator(
+         radius: 35.0,
+         lineWidth: 6.0,
+         percent: per,
+         center:
+         CircleAvatar(
+           child:  TextButton(
+             onPressed: () {
+               print(p);
+             },
+             child: Text(''),
+           ),
+           backgroundImage: NetworkImage(l),
+           radius: 25,
+         ),
+         progressColor: cr,
+       ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextButton(onPressed: (){},
+                    child: Text('${p} Course',style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.black,)),
+                  ),
+                    SizedBox(width: 50,),
+                    Text(dis,style: TextStyle(fontSize: 20,color: Colors.black,)),
+                  ],
+                ),
+              ]),
+
+          ],
+      )
+
+    ),
+
+  ],);
+
+
+}
+
+Widget Drow(){
+  return Drawer(
+    backgroundColor: Color.fromRGBO(66, 150, 240, 0.1),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: 50),
+        Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Color.fromRGBO(66, 150, 240, 0.3),
+                border:
+                Border.all(color: Color.fromRGBO(66, 150, 240, 0.9)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromRGBO(66, 150, 240, 0.3),
+                    blurRadius: 20,
+                    offset: Offset(0, 10),
+                  )
+                ]),
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  child: Container(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 5,
+                        ),
+                        CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              'https://www.woolha.com/media/2020/03/eevee.png'),
+                          backgroundColor:
+                          Color.fromRGBO(66, 150, 240, 0.5),
+                          radius: 35,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        SizedBox(
+                          height: 80,
+                        ),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'User Name',
+                                style: TextStyle(
+                                    fontSize: 25, color: Colors.black),
+                              ),
+                              Text(
+                                'Score : 15',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black),
+                              ),
+                            ]),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          Icons.account_circle_outlined,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 50,
+                        ),
+                        Text(
+                          'Profile',
+                          style:
+                          TextStyle(fontSize: 25, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          Icons.chat_bubble,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 50,
+                        ),
+                        Text(
+                          'Chats',
+                          style:
+                          TextStyle(fontSize: 25, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          Icons.task,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 50,
+                        ),
+                        Text(
+                          'Assignment',
+                          style:
+                          TextStyle(fontSize: 25, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          Icons.paste,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 50,
+                        ),
+                        Text(
+                          'Teachers',
+                          style:
+                          TextStyle(fontSize: 25, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          color: Colors.black,
+                          Icons.settings,
+                          size: 30,
+                        ),
+                        SizedBox(
+                          width: 50,
+                        ),
+                        Text(
+                          'Settings',
+                          style:
+                          TextStyle(fontSize: 25, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )),
+      ],
+    ),
+  );
+}
+Widget RowC(String l,String p,double per,Color cr){
+  double pe=per;
+return  CircularPercentIndicator(
+  radius: 35.0,
+  lineWidth: 6.0,
+  percent: pe,
+  center:
+  CircleAvatar(
+  child:  TextButton(
+  onPressed: () {
+  print(p);
+  },
+  child: Text(''),
+  ),
+  backgroundImage: NetworkImage(l),
+  radius: 25,
+  ),
+  progressColor: cr,
+  );
+}
+
 
 class ss extends StatefulWidget {
   @override
@@ -405,217 +477,7 @@ class sp extends State<ss> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(
-        backgroundColor: Color.fromRGBO(66, 150, 240, 0.1),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 50),
-            Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color.fromRGBO(66, 150, 240, 0.3),
-                    border:
-                    Border.all(color: Color.fromRGBO(66, 150, 240, 0.9)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color.fromRGBO(66, 150, 240, 0.3),
-                        blurRadius: 20,
-                        offset: Offset(0, 10),
-                      )
-                    ]),
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      child: Container(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  'https://www.woolha.com/media/2020/03/eevee.png'),
-                              backgroundColor:
-                              Color.fromRGBO(66, 150, 240, 0.5),
-                              radius: 35,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            SizedBox(
-                              height: 80,
-                            ),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'User Name',
-                                    style: TextStyle(
-                                        fontSize: 25, color: Colors.black),
-                                  ),
-                                  Text(
-                                    'Score : 15',
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.black),
-                                  ),
-                                ]),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.account_circle_outlined,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Profile',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.chat_bubble,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Chats',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.task,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Assignment',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.paste,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Teachers',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              color: Colors.black,
-                              Icons.settings,
-                              size: 30,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Settings',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-          ],
-        ),
-      ),
+      drawer: Drow(),
       appBar: AppBar(
         backgroundColor: Colors.black12,
         title: isSearchClicked
@@ -682,7 +544,30 @@ class sp extends State<ss> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 3,),
+                    Text('Your Courses',style: TextStyle(color: Colors.blueAccent
+                    ,fontSize: 20)),
+                    SizedBox(height: 3,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              'https://www.woolha.com/media/2020/03/eevee.png'),
+                          backgroundColor:
+                          Color.fromRGBO(66, 150, 240, 0.5),
+                          radius: 35,
+                        ),
+             for(int i=0;i<lI.length;i++)Row(children: [
+               SizedBox(width: 5,),
+               RowC(lI[i],goro[i],percentic[i],cR[i]),
+             ]),
+                      ],
+                    ),
+                    SizedBox(height: 10,),
                     for(int i=0;i<data.length;i++)Column(children: [
+                      SizedBox(width: 5,),
                       Container(
                         height: 150,
                         width: double.infinity,
@@ -702,6 +587,8 @@ class sp extends State<ss> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+
+
                             TextButton(
                                 onPressed: () {
                                   titlep=data[i];
@@ -746,188 +633,7 @@ class tp extends State<tt> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(
-        backgroundColor: Color.fromRGBO(66, 150, 240, 0.1),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 50),
-            Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color.fromRGBO(66, 150, 240, 0.3),
-                    border:
-                    Border.all(color: Color.fromRGBO(66, 150, 240, 0.9)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color.fromRGBO(66, 150, 240, 0.3),
-                        blurRadius: 20,
-                        offset: Offset(0, 10),
-                      )
-                    ]),
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      child: Container(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  'https://www.woolha.com/media/2020/03/eevee.png'),
-                              backgroundColor:
-                              Color.fromRGBO(66, 150, 240, 0.5),
-                              radius: 35,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            SizedBox(
-                              height: 80,
-                            ),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'T.User Name',
-                                    style: TextStyle(
-                                        fontSize: 25, color: Colors.black),
-                                  ),
-                                ]),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.account_circle_outlined,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Profile',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.chat_bubble,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Chats',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Courses()));
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.paste,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Courses',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              color: Colors.black,
-                              Icons.settings,
-                              size: 30,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Settings',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-          ],
-        ),
-      ),
+      drawer: Drow(),
       appBar: AppBar(
         backgroundColor: Colors.black12,
         title: isSearchClicked
@@ -1155,178 +861,7 @@ class courses extends State<Courses> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(
-        backgroundColor: Color.fromRGBO(66, 150, 240, 0.1),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 50),
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color.fromRGBO(66, 150, 240, 0.3),
-                  border: Border.all(color: Color.fromRGBO(66, 150, 240, 0.9)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(66, 150, 240, 0.3),
-                      blurRadius: 20,
-                      offset: Offset(0, 10),
-                    )
-                  ]),
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    child: Container(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: 5,
-                          ),
-                          CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                'https://www.woolha.com/media/2020/03/eevee.png'),
-                            backgroundColor: Color.fromRGBO(66, 150, 240, 0.5),
-                            radius: 35,
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          SizedBox(
-                            height: 80,
-                          ),
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'T.User Name',
-                                  style: TextStyle(
-                                      fontSize: 25, color: Colors.black),
-                                ),
-                              ]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(
-                            Icons.account_circle_outlined,
-                            size: 30,
-                            color: Colors.black,
-                          ),
-                          SizedBox(
-                            width: 50,
-                          ),
-                          Text(
-                            'Profile',
-                            style: TextStyle(fontSize: 25, color: Colors.black),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(
-                            Icons.chat_bubble,
-                            size: 30,
-                            color: Colors.black,
-                          ),
-                          SizedBox(
-                            width: 50,
-                          ),
-                          Text(
-                            'Chats',
-                            style: TextStyle(fontSize: 25, color: Colors.black),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(
-                            Icons.paste,
-                            size: 30,
-                            color: Colors.black,
-                          ),
-                          SizedBox(
-                            width: 50,
-                          ),
-                          Text(
-                            'Courses',
-                            style: TextStyle(fontSize: 25, color: Colors.black),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(
-                            color: Colors.black,
-                            Icons.settings,
-                            size: 30,
-                          ),
-                          SizedBox(
-                            width: 50,
-                          ),
-                          Text(
-                            'Settings',
-                            style: TextStyle(fontSize: 25, color: Colors.black),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+      drawer: Drow(),
       appBar: AppBar(
         backgroundColor: Colors.black12,
         title: isSearchClicked
@@ -1386,7 +921,7 @@ class courses extends State<Courses> {
       backgroundColor: Color.fromRGBO(80, 140, 240, .1),
       body: SingleChildScrollView(
         child: ListView.builder(
-          itemCount: cour.length,
+          itemCount: goro.length,
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return Padding(
@@ -1417,7 +952,7 @@ class courses extends State<Courses> {
                               i = index;
                             },
                             child: Text(
-                              'Course ${cour[index]}',
+                              'Course ${goro[index]}',
                               style: TextStyle(
                                 fontSize: 30,
                                 color: Colors.black,
@@ -1448,183 +983,7 @@ class pc extends State<pagec> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(
-        backgroundColor: Color.fromRGBO(66, 150, 240, 0.1),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 50),
-            Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color.fromRGBO(66, 150, 240, 0.3),
-                    border:
-                    Border.all(color: Color.fromRGBO(66, 150, 240, 0.9)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color.fromRGBO(66, 150, 240, 0.3),
-                        blurRadius: 20,
-                        offset: Offset(0, 10),
-                      )
-                    ]),
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      child: Container(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  'https://www.woolha.com/media/2020/03/eevee.png'),
-                              backgroundColor:
-                              Color.fromRGBO(66, 150, 240, 0.5),
-                              radius: 35,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            SizedBox(
-                              height: 80,
-                            ),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'T.User Name',
-                                    style: TextStyle(
-                                        fontSize: 25, color: Colors.black),
-                                  ),
-                                ]),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.account_circle_outlined,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Profile',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.chat_bubble,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Chats',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.paste,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Courses',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              color: Colors.black,
-                              Icons.settings,
-                              size: 30,
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'Settings',
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-          ],
-        ),
-      ),
+      drawer: Drow(),
       appBar: AppBar(
         backgroundColor: Colors.black12,
         title: isSearchClicked
